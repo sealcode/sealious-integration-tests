@@ -1,4 +1,5 @@
 var rp = require("request-promise");
+var fs = require("fs");
 var assert = require("assert");
 
 function uri(path){
@@ -9,24 +10,26 @@ module.exports = function(){
 
 	var siliusz = {
 		name: "Siliusz",
-		age: 34
+		age: 34,
+		photo: fs.createReadStream(__dirname + '/image.png'),
 	};
 
 	function verify_sealiusz(response){
 		assert.equal(response.type_name, "person");
-		assert.deepEqual(response.body, {
-			name: {
+		assert.deepEqual(
+			response.body.name, 
+			{
 				original: "Siliusz",
-				safe: "Siliusz"
-			},
-			age: 34
-		});
+				safe: "Siliusz",
+			}
+		);
+		assert.equal(response.body.age, "34");
 	}
 
 	return rp.post(
-		uri("resources/person"),
-	   	{
-			form: siliusz,
+		{
+			url: uri("resources/person"),
+			formData: siliusz,
 		}
 	).then(function(response){
 		response = JSON.parse(response);

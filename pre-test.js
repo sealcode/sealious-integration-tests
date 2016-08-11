@@ -7,7 +7,8 @@ module.exports = function(){
 		name: "person",
 		fields: [
 			{name: "name", type: "text"},
-			{name: "age", type: "int"}
+			{name: "age", type: "int"},
+			{name: "photo", type: "file"},
 		]
 	});
 
