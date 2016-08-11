@@ -1,0 +1,28 @@
+{
+  "name": "sealious-integration-tests",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sealcode/sealious-integration-tests.git"
+  },
+  "keywords": [
+    "sealious"
+  ],
+  "author": "Sealcode.org",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sealcode/sealious-integration-tests/issues"
+  },
+  "homepage": "https://github.com/sealcode/sealious-integration-tests#readme",
+  "dependencies": {
+    "request": "^2.74.0",
+    "request-promise": "^4.1.1",
+    "sealious": "github:sealcode/sealious#references",
+    "sealious-channel-rest": "github:sealcode/sealious-channel-rest#subjects"
+  }
+}
