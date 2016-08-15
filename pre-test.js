@@ -3,7 +3,7 @@ module.exports = function(){
 	var Sealious = require("sealious");
 	Sealious.init();
 	
-	new Sealious.ResourceType({
+	new Sealious.Collection({
 		name: "person",
 		fields: [
 			{name: "name", type: "text"},
