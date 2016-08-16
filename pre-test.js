@@ -4,7 +4,7 @@ module.exports = function(){
 	Sealious.init();
 	
 	new Sealious.Collection({
-		name: "person",
+		name: "people",
 		fields: [
 			{name: "name", type: "text"},
 			{name: "age", type: "int"},

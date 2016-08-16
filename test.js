@@ -15,7 +15,7 @@ module.exports = function(){
 	};
 
 	function verify_sealiusz(response){
-		assert.equal(response.type_name, "person");
+		assert.equal(response.collection_name, "people");
 		assert.deepEqual(
 			response.body.name, 
 			{
@@ -28,14 +28,14 @@ module.exports = function(){
 
 	return rp.post(
 		{
-			url: uri("resources/person"),
+			url: uri("collections/people"),
 			formData: siliusz,
 		}
 	).then(function(response){
 		response = JSON.parse(response);
 		verify_sealiusz(response);
 		var siliusz_id = response.id;
-		return rp.get(uri("resources/person/" + siliusz_id))
+		return rp.get(uri("collections/people/" + siliusz_id))
 	}).then(function(response){
 		response = JSON.parse(response);
 		verify_sealiusz(response);
