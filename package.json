@@ -24,6 +24,7 @@
     "request": "^2.74.0",
     "request-promise": "^4.1.1",
     "sealious": "github:sealcode/sealious#references",
-    "sealious-channel-rest": "github:sealcode/sealious-channel-rest#alpha"
+    "sealious-channel-rest": "github:sealcode/sealious-channel-rest#alpha",
+    "sealious-datastore-mongo": "github:sealcode/sealious-datastore-mongo#alpha"
   }
 }

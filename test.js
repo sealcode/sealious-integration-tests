@@ -12,6 +12,7 @@ module.exports = function(){
 		name: "Siliusz",
 		age: 34,
 		photo: fs.createReadStream(__dirname + '/image.png'),
+		description: "An easy-going, handsome back-end framework",
 	};
 
 	function verify_sealiusz(response){
@@ -35,11 +36,12 @@ module.exports = function(){
 		response = JSON.parse(response);
 		verify_sealiusz(response);
 		var siliusz_id = response.id;
-		return rp.get(uri("collections/people/" + siliusz_id))
+		return rp.get(uri("collections/people/" + siliusz_id));
 	}).then(function(response){
 		response = JSON.parse(response);
 		verify_sealiusz(response);
-	}).then(function(){
+		return rp.get(uri("collections/people?search=easy"));
+	}).then(function(response){
 		console.log("succcess!");
 	});
 }
