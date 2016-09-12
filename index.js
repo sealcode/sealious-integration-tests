@@ -1,8 +1,8 @@
 var pre = require("./pre-test.js");
-var post = require("./methods/post.js");
-
+var add_resource = require("./methods/add.js");
+var patch_resource = require("./methods/patch.js");
 
 pre()
-.then(post)
+.then(patch_resource)
 .then(()=> process.exit())
 .catch((err) => {console.error(err); process.exit(1)});
