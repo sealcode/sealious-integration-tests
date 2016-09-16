@@ -29,12 +29,10 @@ module.exports = function(){
 		uri: uri("collections/people"),
 	}).then((data) => {
 		id_of_element = data[0].id;
-		return rp({
-			method: "PATCH",
-			uri: uri("collections/people/"+id_of_element),
+		return rp.patch({
+			url: uri("collections/people/"+id_of_element),
+			formData: siliusz,
 			json: true,
-			body: siliusz
-		})
 		});
 	}).then(verifyElementOfCollection)
 	.then(() => {
