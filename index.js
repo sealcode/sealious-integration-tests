@@ -1,6 +1,6 @@
 var pre = require("./pre-test.js");
 var methods = {
-	add: require("./methods/post.js"),
+	add: require("./methods/add.js"),
 	patch: require("./methods/patch.js"),
 	put: require("./methods/put.js"),
 	delete: require("./methods/delete.js")
