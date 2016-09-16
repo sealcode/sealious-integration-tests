@@ -6,7 +6,10 @@ let uuid = require('node-uuid');
 function uri(path){ return "http://localhost:8080/api/v1/" + path; }
 
 module.exports = function(){
-	let siliusz = { age: Math.floor(Math.random()*123123123123) };
+	let siliusz = { 
+		name: "sealiousz", 
+		age: Math.floor(Math.random()*123123123123) 
+	};
 	let id_of_element;
 
 	function verifyElementOfCollection(response){
