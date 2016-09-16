@@ -3,7 +3,7 @@ let rp = require("request-promise");
 let assert = require("assert");
 let uuid = require('node-uuid');
 
-function uri(path){ return "http://localhost:8080/api/v1/" + path; }
+function uri(path){ return "http://localhost:8081/api/v1/" + path; }
 
 module.exports = function(){
 	let siliusz = {
