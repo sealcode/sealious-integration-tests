@@ -6,7 +6,7 @@ let uuid = require('node-uuid');
 function uri(path){ return "http://localhost:8080/api/v1/" + path; }
 
 module.exports = function(){
-	let siliusz = { age: Math.floor(Math.random()*123123123123) }
+	let siliusz = { age: Math.floor(Math.random()*123123123123) };
 	let id_of_element;
 
 	function verifyElementOfCollection(response){
@@ -24,13 +24,13 @@ module.exports = function(){
 		id_of_element = data[0].id;
 		return rp({
 			method: "PUT",
-			uri: uri("collections/people/"+id_of_element),
+			url: uri("collections/people/"+id_of_element),
 			json: true,
-			body: siliusz
-		})
+			formData: siliusz
+		});
 	}).then((response) => {
-		verifyElementOfCollection(response)
+		verifyElementOfCollection(response);
 	}).then(() => {
 		console.log('succcess');
-	})
-}
+	});
+};
