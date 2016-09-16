@@ -1,3 +1,4 @@
+"use strict";
 var rp = require("request-promise");
 var fs = require("fs");
 var assert = require("assert");

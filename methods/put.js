@@ -1,3 +1,4 @@
+"use strict";
 let rp = require("request-promise");
 let assert = require("assert");
 let uuid = require('node-uuid');

@@ -1,11 +1,14 @@
-let rp = require("request-promise");
-let assert = require("assert");
-let uuid = require('node-uuid');
+"use strict";
+const rp = require("request-promise");
+const assert = require("assert");
+const uuid = require('node-uuid');
 
-function uri(path){ return "http://localhost:8080/api/v1/" + path; }
+function uri(path){ 
+	return "http://localhost:8080/api/v1/" + path; 
+}
 
 module.exports = function(){
-	let siliusz = { name: uuid.v4() }
+	let siliusz = { name: uuid.v4() };
 	let id_of_element;
 
 	function verifyElementOfCollection(response){
@@ -32,9 +35,9 @@ module.exports = function(){
 			json: true,
 			body: siliusz
 		})
-	}).then((response) => {
-		verifyElementOfCollection(response)
-	}).then(() => {
+		});
+	}).then(verifyElementOfCollection)
+	.then(() => {
 		console.log('succcess');
-	})
-}
+	});
+};
