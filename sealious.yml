@@ -1,5 +1,5 @@
 core:
     datastore: mongo
-chip.channel.www_server:
+www_server:
     connections:
         - port: 8081
