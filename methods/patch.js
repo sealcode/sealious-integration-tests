@@ -8,7 +8,14 @@ function uri(path){
 }
 
 module.exports = function(){
-	let siliusz = { name: uuid.v4() };
+	const siliusz = { 
+		name: uuid.v4(),
+		age: 34,
+	};
+	const patch = {
+		name: uuid.v4(),
+	};
+
 	let id_of_element;
 
 	function verifyElementOfCollection(response){
@@ -20,22 +27,18 @@ module.exports = function(){
 				safe: siliusz.name,
 			}
 		);
-		assert.equal(response.body.age, "34");
 	}
 
-	return rp({
-		method: "GET",
+	return rp.post({
 		json: true,
 		uri: uri("collections/people"),
+		formData: siliusz,
 	}).then((data) => {
-		id_of_element = data[0].id;
+		id_of_element = data.id;
 		return rp.patch({
 			url: uri("collections/people/"+id_of_element),
 			formData: siliusz,
 			json: true,
 		});
-	}).then(verifyElementOfCollection)
-	.then(() => {
-		console.log('succcess');
-	});
+	}).then(verifyElementOfCollection);
 };

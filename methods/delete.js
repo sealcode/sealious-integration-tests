@@ -6,7 +6,10 @@ let uuid = require('node-uuid');
 function uri(path){ return "http://localhost:8080/api/v1/" + path; }
 
 module.exports = function(){
-	let siliusz = { age: Math.floor(Math.random()*123123123123) };
+	let siliusz = {
+		name: "siliusz",
+		age: Math.floor(Math.random()*123123123123),
+	};
 	let id_of_element;
 
 	function verifyElementOfCollection(response){
@@ -16,12 +19,12 @@ module.exports = function(){
 
 	// name is requried
 
-	return rp({
-		method: "GET",
+	return rp.post({
 		json: true,
 		uri: uri("collections/people"),
+		formData: siliusz,
 	}).then((data) => {
-		id_of_element = data[0].id;
+		id_of_element = data.id;
 
 		return rp({
 			method: "DELETE",
@@ -35,12 +38,6 @@ module.exports = function(){
 			json: true
 		});
 	}).then((response) => {
-		if (response.type !== undefined && response.type === "not_found") {
-			return "success";
-		} else {
-			return "error";
-		}
-	}).then((response) => {
-		console.log('status', response);
+		assert.equal(response.type, "not_found");
 	});
-}
+};
