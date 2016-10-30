@@ -1,0 +1,5 @@
+core:
+    datastore: mongo
+www_server:
+    connections:
+        - port: 8081

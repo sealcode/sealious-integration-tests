@@ -3,7 +3,7 @@ var fs = require("fs");
 var assert = require("assert");
 
 function uri(path){
-	return "http://localhost:8080/api/v1/" + path;
+	return "http://localhost:8081/api/v1/" + path;
 }
 
 module.exports = function(){
@@ -18,7 +18,7 @@ module.exports = function(){
 	function verify_sealiusz(response){
 		assert.equal(response.collection_name, "people");
 		assert.deepEqual(
-			response.body.name, 
+			response.body.name,
 			{
 				original: "Siliusz",
 				safe: "Siliusz",

@@ -4,7 +4,7 @@ var fs = require("fs");
 var assert = require("assert");
 
 function uri(path){
-	return "http://localhost:8080/api/v1/" + path;
+	return "http://localhost:8081/api/v1/" + path;
 }
 
 module.exports = function(){
@@ -13,7 +13,6 @@ module.exports = function(){
 		name: "Siliusz",
 		age: 34,
 		photo: fs.createReadStream(__dirname + '/image.png'),
-		description: "An easy-going, handsome back-end framework",
 	};
 
 	function verify_sealiusz(response){
