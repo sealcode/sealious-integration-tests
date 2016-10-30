@@ -1,13 +1,8 @@
 // scenario #1
-// TODO:
-// 1. post new element to collection
+// TODO: Post new element to collection
 // - send object as formData / JSON-encoded
+// - check status
 // - check body with prepared body
-// - check status
-//
-// 2. get chose element from collection
-// - check status
-// - check body
 
 "use strict";
 var rp = require("request-promise");
@@ -20,27 +15,29 @@ module.exports = function() {
 	var prepared_body = {
 		name: "Element",
 		age: 20,
-		photo: fs.createReadStream(__dirname + '/image.png'),
 		description: "Sealious proposes an application architecture that enables creating applications in a highly declarative way."
 	}
 
-	var verify = function(response){
-		assert.equal(response.collection_name, "people");
-		assert.deepEqual(
-			response.body.name,
-			{
-				original: prepared_body.name,
-				safe: prepared_body.safe
-			}
-		);
-		assert.equal(response.body.age, "20");
+	var verify = function(res){
+		assert.equal(res.collection_name, "people");
+		assert.equal(res.body.age, 20);
+		assert.deepEqual(res.body.name,{
+			original: prepared_body.name,
+			safe: prepared_body.name
+		});
 	}
 
 	return rp.post({
 		url: uri('collections/people'),
 		formData: prepared_body,
-		json: true
-	}).then((response) => {
-		console.log(response)
-	})
+		json: true,
+		resolveWithFullResponse: true
+	}).then((res) => {
+		if (res.stausCode === 201) return res
+		else throw new Error('incorrect status code, received ' + res.statusCode)
+	}).then((res) => {
+		verify(res.body)
+	}).then(() => {
+		console.log("succcess!");
+	});
 };
