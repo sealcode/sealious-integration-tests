@@ -18,13 +18,11 @@ module.exports = function() {
 		json: true,
 		resolveWithFullResponse: true
 	}).then((res) => {
-		console.log(res.statusCode)
 		if (res.statusCode === 200) return res
 		else throw new Error('incorrect status code, received ' + res.statusCode)
 	}).then((res) => {
-		// if (res.body === "bad_subject") return true
-		// else throw new Error('incorrect type of response')
-		console.log(res)
+		if (res.body.length === 0) return true
+		else throw new Error('incorrect body')
 	}).then(() => {
 		console.log("succcess!");
 	});
