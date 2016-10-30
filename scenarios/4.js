@@ -1,7 +1,7 @@
-// scenario #2
-// TODO: Get non-existent element from collection
+// scenario #4
+// TODO: Get all elements of empty collection
 // - check status
-// - check type of response
+// - check body
 
 "use strict";
 var rp = require("request-promise");
@@ -11,18 +11,20 @@ var assert = require("assert");
 var uri = (path) => "http://localhost:8080/api/v1/" + path;
 
 module.exports = function() {
-	console.log('scenario #2')
+	console.log('scenario #4')
 
 	return rp.get({
-		url: uri("collections/people/" + "_"),
+		url: uri("collections/empty"),
 		json: true,
 		resolveWithFullResponse: true
 	}).then((res) => {
-		if (res.statusCode === 404) return res
+		console.log(res.statusCode)
+		if (res.statusCode === 200) return res
 		else throw new Error('incorrect status code, received ' + res.statusCode)
 	}).then((res) => {
-		if (res.body.type === "not_found") return true
-		else throw new Error('incorrect type of response')
+		// if (res.body === "bad_subject") return true
+		// else throw new Error('incorrect type of response')
+		console.log(res)
 	}).then(() => {
 		console.log("succcess!");
 	});

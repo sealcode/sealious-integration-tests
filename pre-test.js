@@ -15,5 +15,12 @@ module.exports = function(){
 		]
 	});
 
+	new Sealious.Collection({
+		name: "empty",
+		fields: [
+			{name: "number", type: "int"}
+		]
+	});
+
 	return Sealious.start();
 }

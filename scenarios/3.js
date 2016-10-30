@@ -18,7 +18,7 @@ module.exports = function() {
 		json: true,
 		resolveWithFullResponse: true
 	}).then((res) => {
-		if (res.stausCode === 404) return res
+		if (res.statusCode === 404) return res
 		else throw new Error('incorrect status code, received ' + res.statusCode)
 	}).then((res) => {
 		if (res.body.type === "bad_subject") return true
