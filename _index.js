@@ -7,7 +7,7 @@ var methods = {
 	put: require("./methods/put.js"),
 	delete: require("./methods/delete.js"),
 }
-// TODO: count files in scenarios
+
 pre()
 .then(function(){
 	return Promise.each(

@@ -3,12 +3,12 @@ const rp = require("request-promise");
 const assert = require("assert");
 const uuid = require('node-uuid');
 
-function uri(path){ 
-	return "http://localhost:8080/api/v1/" + path; 
+function uri(path){
+	return "http://localhost:8080/api/v1/" + path;
 }
 
 module.exports = function(){
-	const siliusz = { 
+	const siliusz = {
 		name: uuid.v4(),
 		age: 34,
 	};
