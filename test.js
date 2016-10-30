@@ -18,7 +18,7 @@ module.exports = function(){
 	function verify_sealiusz(response){
 		assert.equal(response.collection_name, "people");
 		assert.deepEqual(
-			response.body.name, 
+			response.body.name,
 			{
 				original: "Siliusz",
 				safe: "Siliusz",

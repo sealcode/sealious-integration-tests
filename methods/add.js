@@ -13,7 +13,6 @@ module.exports = function(){
 		name: "Siliusz",
 		age: 34,
 		photo: fs.createReadStream(__dirname + '/image.png'),
-		description: "An easy-going, handsome back-end framework",
 	};
 
 	function verify_sealiusz(response){

@@ -1,6 +1,7 @@
 "use strict";
 const Promise = require("bluebird");
 var pre = require("./pre-test.js");
+
 var methods = {
 	add: require("./methods/add.js"),
 	patch: require("./methods/patch.js"),
