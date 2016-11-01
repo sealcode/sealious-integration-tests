@@ -1,10 +1,10 @@
+var Sealious = require("sealious");
+
 module.exports = function(){
 
-	var Sealious = require("sealious");
+	var App = new Sealious.App();
 
-	Sealious.init();
-
-	new Sealious.Collection({
+	App.createCollection({
 		name: "people",
 		fields: [
 			{name: "name", type: "text", required: true},
@@ -14,5 +14,5 @@ module.exports = function(){
 		]
 	});
 
-	return Sealious.start();
-}
+	return App.start();
+};

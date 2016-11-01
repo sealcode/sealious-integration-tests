@@ -1,5 +1,4 @@
 core:
     datastore: mongo
-www_server:
-    connections:
-        - port: 8081
+www-server:
+    port: 8081

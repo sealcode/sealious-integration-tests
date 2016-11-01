@@ -36,8 +36,8 @@ module.exports = function(){
 			method: "GET",
 			uri: uri("collections/people/"+id_of_element),
 			json: true
+		}).catch((response) => {
+			assert.equal(response.error.message.type, "not_found");
 		});
-	}).then((response) => {
-		assert.equal(response.type, "not_found");
 	});
 };
