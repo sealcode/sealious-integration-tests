@@ -1,5 +1,6 @@
-// scenario #4
-// TODO: Get all elements of empty collection
+// scenario #3
+// TODO: Post new element without required fields to collection
+// - send empty object as formData / JSON-encoded
 // - check status
 // - check body
 
@@ -11,19 +12,21 @@ var assert = require("assert");
 var uri = (path) => "http://localhost:8080/api/v1/" + path;
 
 module.exports = function() {
-	console.log('scenario #4')
+	console.log('scenario #3')
 
-	return rp.get({
-		url: uri("collections/empty"),
+	prepared_body = {}
+	return rp.post({
+		url: uri('collections/people'),
+		formData: {},
 		json: true,
 		resolveWithFullResponse: true
 	}).then((res) => {
-		if (res.statusCode === 200) return res
+		if (res.statusCode === 400) return res
 		else throw new Error('incorrect status code, received ' + res.statusCode)
 	}).then((res) => {
-		if (res.body.length === 0) return true
-		else throw new Error('incorrect body')
-	}).then(() => {
+		console.log(res.body)
+		// "error":"Bad Request","message":"Invalid multipart payload format"
+	}).then((res) => {
 		console.log("succcess!");
 	});
 };

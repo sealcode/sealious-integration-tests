@@ -1,4 +1,4 @@
-// scenario #2
+// scenario #1
 // TODO: Get non-existent element from collection
 // - check status
 // - check type of response
@@ -11,7 +11,7 @@ var assert = require("assert");
 var uri = (path) => "http://localhost:8080/api/v1/" + path;
 
 module.exports = function() {
-	console.log('scenario #2')
+	console.log('scenario #1')
 
 	return rp.get({
 		url: uri("collections/people/" + "_"),

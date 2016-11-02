@@ -1,7 +1,7 @@
 // scenario #3
-// TODO: Get non-existent collection
+// TODO: Get all elements of empty collection
 // - check status
-// - check type of response
+// - check body
 
 "use strict";
 var rp = require("request-promise");
@@ -14,15 +14,15 @@ module.exports = function() {
 	console.log('scenario #3')
 
 	return rp.get({
-		url: uri("collections/peopl"), //`peopl` instead of `people`
+		url: uri("collections/empty"),
 		json: true,
 		resolveWithFullResponse: true
 	}).then((res) => {
-		if (res.statusCode === 404) return res
+		if (res.statusCode === 200) return res
 		else throw new Error('incorrect status code, received ' + res.statusCode)
 	}).then((res) => {
-		if (res.body.type === "bad_subject") return true
-		else throw new Error('incorrect type of response')
+		if (res.body.length === 0) return true
+		else throw new Error('incorrect body')
 	}).then(() => {
 		console.log("succcess!");
 	});

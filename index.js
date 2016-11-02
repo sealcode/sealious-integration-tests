@@ -4,9 +4,13 @@ var scenarios = require('auto-load')('scenarios')
 
 require("./pre-test.js")()
 .then(() => {
+	// scenarios/[method]/[scenario (key)]
+	// e.g. scenarios/post/1.js
 	return Promise.each(
-		Object.keys(scenarios), (key) => {
-			return scenarios[key]().then(() => console.log("Done scenario"))
+		Object.keys(scenarios), (method) => {
+			for (var key in scenarios[method]) {
+				return scenarios[method][key]().then(() => console.log('→ scenario done'))
+			}
 		}
 	)
 })
