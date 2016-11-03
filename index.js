@@ -1,20 +1,30 @@
 "use strict";
 const Promise = require("bluebird");
-var scenarios = require('auto-load')('scenarios')
+const pre = require("./pre-test.js");
+var scenarios = require('auto-load')('scenarios');
 
-require("./pre-test.js")()
-.then(() => {
-	// scenarios/[method]/[scenario (key)]
-	// e.g. scenarios/post/1.js
+pre()
+.then(function(){
 	return Promise.each(
 		Object.keys(scenarios), (method) => {
-			for (var key in scenarios[method]) {
-				return scenarios[method][key]().then(() => console.log('→ scenario done'))
+			if(scenarios[method] instanceof Function){
+				return scenarios[method]();
+			}else{
+				const promises = {};
+				for (var key in scenarios[method]) {
+					promises[key] = scenarios[method][key]().then(() => console.log('→ scenario done'));
+				}
+				return Promise.props(promises);
 			}
 		}
-	)
-})
-.then(() => {
-	console.log("Tests run complete. Exiting with status 0.");
+	);
+}).then(()=> {
+	console.log("\n\n\t✓ Success! Tests run complete. Exiting with status 0.\n\n");
 	process.exit(0);
 })
+.catch((err) => {
+	console.error(err); 
+	console.log(err.stack);
+	console.log("\n\n\t✗ Tests failed. Exiting with status 1. See the above output for details.\n\n");
+	process.exit(1);
+});

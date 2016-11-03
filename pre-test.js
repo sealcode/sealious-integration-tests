@@ -19,7 +19,22 @@ module.exports = function(){
 		fields: [
 			{name: "number", type: "int"}
 		]
-	})
+	});
 
-	return App.start();
+	App.createCollection({
+		name: "restricted",
+		fields: [],
+		access_strategy: {
+			default: "logged_in"
+		}
+	});
+
+	return App.start()
+	.then(function(){
+		const datastore = App.ChipManager.get_datastore_chip();
+		return datastore.remove("users", {});
+		//.then(() => datastore.remove("sessions", {}));
+	}).then(function(){
+		return App;
+	});
 };

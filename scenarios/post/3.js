@@ -9,7 +9,7 @@ var rp = require("request-promise");
 var fs = require("fs");
 var assert = require("assert");
 
-var uri = (path) => "http://localhost:8080/api/v1/" + path;
+var uri = (path) => "http://localhost:8081/api/v1/" + path;
 
 module.exports = function() {
 	console.log('scenario #3')
