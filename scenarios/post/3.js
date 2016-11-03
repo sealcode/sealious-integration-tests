@@ -1,5 +1,5 @@
 // scenario #3
-// TODO: Post new element without required fields to collection
+// TODO: Post new element without body
 // - send empty object as formData / JSON-encoded
 // - check status
 // - check body
