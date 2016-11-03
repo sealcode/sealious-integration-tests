@@ -9,11 +9,9 @@ var rp = require("request-promise");
 var fs = require("fs");
 var assert = require("assert");
 
-var uri = (path) => "http://localhost:8080/api/v1/" + path;
+var uri = (path) => "http://localhost:8081/api/v1/" + path;
 
 module.exports = function() {
-	console.log('scenario #1')
-
 	var prepared_body = {
 		name: "Element",
 		age: 20,
@@ -34,13 +32,17 @@ module.exports = function() {
 		formData: prepared_body,
 		json: true,
 		resolveWithFullResponse: true
-	}).then((res) => {
+	})
+	.then((res) => {
 		if (res.statusCode === 201) return res
-		// else throw new Error('incorrect status code, received ' + res.statusCode)
-		else reject('incorrect status code, received ' + res.statusCode)
-	}).then((res) => {
+	})
+	.catch((res) => {
+		throw new Error('incorrect status code, received ' + res.statusCode)
+	})
+	.then((res) => {
 		verify(res.body)
-	}).then(() => {
+	})
+	.then(() => {
 		console.log("succcess!");
 	});
 };

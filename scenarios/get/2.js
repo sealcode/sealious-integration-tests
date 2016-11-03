@@ -8,24 +8,26 @@ var rp = require("request-promise");
 var fs = require("fs");
 var assert = require("assert");
 
-var uri = (path) => "http://localhost:8080/api/v1/" + path;
+var uri = (path) => "http://localhost:8081/api/v1/" + path;
 
 module.exports = function() {
-	console.log('scenario #2')
-
 	return rp.get({
 		url: uri("collections/peopl"), //`peopl` instead of `people`
 		json: true,
 		resolveWithFullResponse: true
-	}).then((res) => {
-		if (res.statusCode === 404) return res
-		// else throw new Error('incorrect status code, received ' + res.statusCode)
-		else reject('incorrect status code, received ' + res.statusCode)
-	}).then((res) => {
-		if (res.body.type === "bad_subject") return true
-		// else throw new Error('incorrect type of response')
-		else reject('incorrect type of response')
-	}).then(() => {
-		console.log("succcess!");
-	});
+	})
+	.then(() => {
+		throw new Error("Should have thrown a 404 error!");
+	})
+	.catch((res) => {
+		if (res.statusCode === 404){
+			if (res.error.message.type === "bad_subject"){
+				return true;
+			} else {
+				throw new Error('incorrect status code, received ' + res.statusCode);
+			}
+		}
+	})
+
+	.then(() => console.log("succcess!"))
 };

@@ -29,5 +29,8 @@
     "sealious": "github:sealcode/sealious#alpha",
     "sealious-datastore-mongo": "sealcode/sealious-datastore-mongo#alpha",
     "sealious-www-server": "github:sealcode/sealious-www-server#alpha"
+  },
+  "devDependencies": {
+    "request-debug": "^0.2.0"
   }
 }
