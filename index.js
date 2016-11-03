@@ -1,31 +1,20 @@
 "use strict";
 const Promise = require("bluebird");
-var pre = require("./pre-test.js");
+var scenarios = require('auto-load')('scenarios')
 
-var methods = {
-	add: require("./methods/add.js"),
-	patch: require("./methods/patch.js"),
-	put: require("./methods/put.js"),
-	delete: require("./methods/delete.js"),
-}
-
-pre()
-.then(function(){
+require("./pre-test.js")()
+.then(() => {
+	// scenarios/[method]/[scenario (key)]
+	// e.g. scenarios/post/1.js
 	return Promise.each(
-		Object.keys(methods), 
-		(key)=>{
-			console.log("Running scenario:", key);
-			return methods[key]()
-			.then(function(){
-				console.log("\t...success!");
-			});
-		});
-}).then(()=> {
+		Object.keys(scenarios), (method) => {
+			for (var key in scenarios[method]) {
+				return scenarios[method][key]().then(() => console.log('→ scenario done'))
+			}
+		}
+	)
+})
+.then(() => {
 	console.log("Tests run complete. Exiting with status 0.");
 	process.exit(0);
 })
-.catch((err) => {
-	console.error(err); 
-	console.log(err.stack);
-	process.exit(1);
-});

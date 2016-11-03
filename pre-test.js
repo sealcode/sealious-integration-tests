@@ -14,5 +14,12 @@ module.exports = function(){
 		]
 	});
 
+	App.createCollection({
+		name: "empty",
+		fields: [
+			{name: "number", type: "int"}
+		]
+	})
+
 	return App.start();
 };
