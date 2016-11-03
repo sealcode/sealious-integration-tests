@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/sealcode/sealious-integration-tests#readme",
   "dependencies": {
+    "auto-load": "^2.1.0",
     "bluebird": "^3.4.6",
     "node-uuid": "^1.4.7",
     "request": "^2.74.0",

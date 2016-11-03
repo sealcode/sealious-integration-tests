@@ -22,7 +22,8 @@ module.exports = function() {
 		resolveWithFullResponse: true
 	}).then((res) => {
 		if (res.statusCode === 400) return res
-		else throw new Error('incorrect status code, received ' + res.statusCode)
+		// else throw new Error('incorrect status code, received ' + res.statusCode)
+		else reject('incorrect status code, received ' + res.statusCode)
 	}).then((res) => {
 		console.log(res.body)
 		// "error":"Bad Request","message":"Invalid multipart payload format"

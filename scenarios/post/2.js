@@ -27,7 +27,8 @@ module.exports = function() {
 		resolveWithFullResponse: true
 	}).then((res) => {
 		if (res.statusCode === 400) return res
-		else throw new Error('incorrect status code, received ' + res.statusCode)
+		// else throw new Error('incorrect status code, received ' + res.statusCode)
+		else reject('incorrect status code, received ' + res.statusCode)
 	}).then(() => {
 		console.log("succcess!");
 	});

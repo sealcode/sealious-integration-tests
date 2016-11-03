@@ -19,10 +19,12 @@ module.exports = function() {
 		resolveWithFullResponse: true
 	}).then((res) => {
 		if (res.statusCode === 404) return res
-		else throw new Error('incorrect status code, received ' + res.statusCode)
+		// else throw new Error('incorrect status code, received ' + res.statusCode)
+		else reject('incorrect status code, received ' + res.statusCode)
 	}).then((res) => {
 		if (res.body.type === "bad_subject") return true
-		else throw new Error('incorrect type of response')
+		// else throw new Error('incorrect type of response')
+		else reject('incorrect type of response')
 	}).then(() => {
 		console.log("succcess!");
 	});

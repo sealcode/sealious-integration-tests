@@ -19,10 +19,12 @@ module.exports = function() {
 		resolveWithFullResponse: true
 	}).then((res) => {
 		if (res.statusCode === 200) return res
-		else throw new Error('incorrect status code, received ' + res.statusCode)
+		// else throw new Error('incorrect status code, received ' + res.statusCode)
+		else reject('incorrect status code, received ' + res.statusCode)
 	}).then((res) => {
 		if (res.body.length === 0) return true
-		else throw new Error('incorrect body')
+		// else throw new Error('incorrect body')
+		else reject('incorrect body')
 	}).then(() => {
 		console.log("succcess!");
 	});
