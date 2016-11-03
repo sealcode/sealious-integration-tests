@@ -19,19 +19,11 @@ module.exports = function() {
 		resolveWithFullResponse: true
 	})
 	.then((res) => {
-		if (res.statusCode === 400) return res
-	})
-	.catch((res) => {
-		throw new Error('incorrect status code, received ' + res.statusCode)
-	})
-
-	.then((res) => {
-		if (res.body.error === "Bad Request") return true
-	})
-	.catch((res) => {
-		throw new Error('incorrect type of response, received ' + res.body.error)
-	})
-	.then(() => {
-		console.log("succcess!");
-	});
+		if (res.statusCode !== 400){
+			throw new Error('incorrect status code, received ' + res.statusCode)
+		} else {
+			if (res.body.error !== "Bad Request") throw new Error('incorrect type of response, received ' + res.body.error)
+			else console.log("succcess!");
+		}
+	}) 
 };

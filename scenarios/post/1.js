@@ -34,13 +34,12 @@ module.exports = function() {
 		resolveWithFullResponse: true
 	})
 	.then((res) => {
-		if (res.statusCode === 201) return res
-	})
-	.catch((res) => {
-		throw new Error('incorrect status code, received ' + res.statusCode)
-	})
-	.then((res) => {
-		verify(res.body)
+		console.log(res.statusCode)
+		if (res.statusCode !== 201){
+			throw new Error('incorrect status code, received ' + res.statusCode)
+		} else {
+			verify(res.body)
+		}
 	})
 	.then(() => {
 		console.log("succcess!");

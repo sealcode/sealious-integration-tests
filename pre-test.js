@@ -29,6 +29,8 @@ module.exports = function(){
 		}
 	});
 
+	App.Logger.error = () => {}
+
 	return App.start()
 	.then(function(){
 		const datastore = App.ChipManager.get_datastore_chip();
