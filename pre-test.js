@@ -15,10 +15,13 @@ module.exports = function(){
 	});
 
 	App.createCollection({
+		name: "without_required_values",
+		fields: [{	name: "number", type: "float"	}]
+	});
+
+	App.createCollection({
 		name: "empty",
-		fields: [
-			{name: "number", type: "int"}
-		]
+		fields: [{	name: "number", type: "int"	}]
 	});
 
 	App.createCollection({
