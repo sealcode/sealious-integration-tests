@@ -17,22 +17,11 @@ module.exports = function() {
 		resolveWithFullResponse: true
 	})
 	.then((res) => {
-		if (res.statusCode === 200) return res
-	})
-	.catch((res) => {
-		if (res.statusCode !== 200) {
+		if (res.statusCode !== 200){
 			throw new Error('incorrect status code, received ' + res.statusCode)
+		} else {
+			if (res.body.length !== 0) throw new Error('incorrect body')
+			else console.log("success!")
 		}
 	})
-
-	.then((res) => {
-		if (res.body.length === 0) return true
-	})
-	.catch((res) => {
-		throw new Error('incorrect body')
-	})
-
-	.then(() => {
-		console.log("succcess!");
-	});
 };
