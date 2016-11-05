@@ -1,6 +1,6 @@
 // scenario #3
-// TODO: Post new element without body
-// - send empty object as formData / JSON-encoded
+// TODO: Post new element without body (formData)
+// - send empty object as formData
 // - check status
 // - check body
 
@@ -25,5 +25,5 @@ module.exports = function() {
 			if (res.body.error !== "Bad Request") throw new Error('incorrect type of response, received ' + res.body.error)
 			else console.log("succcess!");
 		}
-	}) 
+	})
 };

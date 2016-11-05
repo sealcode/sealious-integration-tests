@@ -1,5 +1,6 @@
 // scenario #5
 // TODO: Post new element without fields to collection without requried values
+// - send empty object as json data
 
 "use strict";
 var rp = require("request-promise");
