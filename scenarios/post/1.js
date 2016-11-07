@@ -8,6 +8,7 @@
 var rp = require("request-promise");
 var fs = require("fs");
 var assert = require("assert");
+var clc = require('cli-color');
 
 var uri = (path) => "http://localhost:8081/api/v1/" + path;
 
@@ -36,7 +37,7 @@ module.exports = function() {
 	.then((res) => {
 		console.log(res.statusCode)
 		if (res.statusCode !== 201){
-			throw new Error('incorrect status code, received ' + res.statusCode)
+			throw new Error(clc.red('incorrect status code, received ' + res.statusCode))
 		} else {
 			verify(res.body)
 		}

@@ -7,6 +7,7 @@
 var rp = require("request-promise");
 var fs = require("fs");
 var assert = require("assert");
+var clc = require('cli-color');
 
 var uri = (path) => "http://localhost:8081/api/v1/" + path;
 
@@ -23,11 +24,11 @@ module.exports = function() {
 	// })
 
 	.then((res) => {
-		throw new Error("Should have thrown a 404 error!");
+		throw new Error(clc.red("Should have thrown a 404 error!"));
 	})
 	.catch((res) => {
 		if(res.statusCode !== 404 || res.error.message.type !== "not_found"){
-			throw new Error("should have thrown a 404 not_found error");
+			throw new Error(clc.red("should have thrown a 404 not_found error"));
 		}
 	})
 

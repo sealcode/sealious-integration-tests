@@ -6,6 +6,7 @@
 var rp = require("request-promise");
 var fs = require("fs");
 var assert = require("assert");
+var clc = require('cli-color');
 
 var uri = (path) => "http://localhost:8081/api/v1/" + path;
 
@@ -18,10 +19,10 @@ module.exports = function() {
 	})
 	.then((res) => {
 		if (res.statusCode !== 201){
-			throw new Error('incorrect status code, received ' + res.statusCode)
+			throw new Error(clc.red('incorrect status code, received ' + res.statusCode))
 		} else {
 			if (Object.keys(res.body.body).length !== 0) {
-				throw new Error('the body has unforeseen properties')
+				throw new Error(clc.red('the body has unforeseen properties'))
 			} else {
 				console.log("success!")
 			}

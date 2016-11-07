@@ -5,6 +5,7 @@
 var rp = require("request-promise");
 var fs = require("fs");
 var assert = require("assert");
+var clc = require('cli-color');
 
 var uri = (path) => "http://localhost:8081/api/v1/" + path;
 
@@ -19,7 +20,7 @@ module.exports = function() {
 		resolveWithFullResponse: true
 	})
 	.then((res) => {
-		if (res.body.age !== undefined) throw new Error(`the body contains fields with 'undefined' value, which were not added`)
+		if (res.body.age !== undefined) throw new Error(clc.red(`the body contains fields with 'undefined' value, which were not added`))
 		else console.log("success!")
 	})
 };

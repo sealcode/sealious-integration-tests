@@ -5,6 +5,7 @@
 var rp = require("request-promise");
 var fs = require("fs");
 var assert = require("assert");
+var clc = require('cli-color');
 
 var uri = (path) => "http://localhost:8081/api/v1/" + path;
 
@@ -21,7 +22,7 @@ module.exports = function() {
 	})
 	.then((res) => {
 		if (res.statusCode !== 201) {
-			throw new Error('incorrect status code, received ' + res.statusCode)
+			throw new Error(clc.red('incorrect status code, received ' + res.statusCode))
 		} else {
 			var id = res.body.id
 			return rp.delete({
@@ -34,13 +35,13 @@ module.exports = function() {
 	.then((res) => {
 		if (res.body !== undefined) {
 			if (res.statusCode !== 204) {
-				throw new Error('incorrect status code, received ' + res.statusCode)
+				throw new Error(clc.red('incorrect status code, received ' + res.statusCode))
 				// http://stackoverflow.com/a/2342589
 			} else {
 				console.log("success!")
 			}
 		} else {
-			throw new Error(`the response has body`)
+			throw new Error(clc.red(`the response has body`))
 		}
 	})
 };

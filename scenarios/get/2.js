@@ -7,6 +7,7 @@
 var rp = require("request-promise");
 var fs = require("fs");
 var assert = require("assert");
+var clc = require('cli-color');
 
 var uri = (path) => "http://localhost:8081/api/v1/" + path;
 
@@ -17,14 +18,14 @@ module.exports = function() {
 		resolveWithFullResponse: true
 	})
 	.then(() => {
-		throw new Error("Should have thrown a 404 error!");
+		throw new Error(clc.red("Should have thrown a 404 error!"));
 	})
 	.catch((res) => {
 		if (res.statusCode === 404){
 			if (res.error.message.type === "bad_subject"){
 				return true;
 			} else {
-				throw new Error('incorrect status code, received ' + res.statusCode);
+				throw new Error(clc.red('incorrect status code, received ' + res.statusCode));
 			}
 		}
 	})

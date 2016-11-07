@@ -5,6 +5,7 @@
 var rp = require("request-promise");
 var fs = require("fs");
 var assert = require("assert");
+var clc = require('cli-color');
 
 var uri = (path) => "http://localhost:8081/api/v1/" + path;
 
@@ -21,7 +22,7 @@ module.exports = function() {
 	})
 	.then((res) => {
 		if (res.statusCode !== 201) {
-			throw new Error('incorrect status code, received ' + res.statusCode)
+			throw new Error(clc.red('incorrect status code, received ' + res.statusCode))
 		} else {
 			return rp.get({
 				url: uri("collections/people?search=Lorem"),
@@ -35,10 +36,10 @@ module.exports = function() {
 			if (res.body[0].description.original.search('Lorem') !== -1) {
 				console.log("success!")
 			} else {
-				throw new Error(`the searched element don't fit to search keyword`)
+				throw new Error(clc.red(`the searched element don't fit to search keyword`))
 			}
 		} else {
-			throw new Error(`the body in response on search keyword 'Lorem' doesn't have search results`)
+			throw new Error(clc.red(`the body in response on search keyword 'Lorem' doesn't have search results`))
 		}
 	})
 };
