@@ -33,7 +33,7 @@ module.exports = function() {
 		}
 	})
 	.then((res) => {
-		if (res.body !== undefined) {
+		if (res.body === undefined) {
 			if (res.statusCode !== 204) {
 				throw new Error(clc.red('incorrect status code, received ' + res.statusCode))
 				// http://stackoverflow.com/a/2342589
