@@ -17,12 +17,6 @@ module.exports = function() {
 		json: true,
 		resolveWithFullResponse: true
 	})
-	// .then((res) => {
-	// 	if (res.body.type === "not_found") return res
-	// }).catch((res) => {
-	// 	throw new Error("Incorrect type of body, it should be `not_found`, received: "+res.body.type)
-	// })
-
 	.then((res) => {
 		throw new Error(clc.red("Should have thrown a 404 error!"));
 	})
