@@ -31,6 +31,9 @@ module.exports = function() {
 			})
 		}
 	})
+	.then((res) => {
+		throw new Error(clc.red("Should have thrown a error which is related to incorrect status code"))
+	})
 	.catch((res) => {
 		if (res.statusCode !== 403) throw new Error(clc.red('incorrect status code, received ' + res.statusCode))
 	})
